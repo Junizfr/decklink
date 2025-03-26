@@ -1,0 +1,39 @@
+{
+  "name": "decklink",
+  "version": "1.0.0",
+  "description": "Projet de groupe réseau social",
+  "homepage": "https://github.com/Junizfr/decklink#readme",
+  "bugs": {
+    "url": "https://github.com/Junizfr/decklink/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Junizfr/decklink.git"
+  },
+  "license": "ISC",
+  "author": "Nassim, Magdaléna, Alexis",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.57.1",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.6.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
+    "prettier": "3.5.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
