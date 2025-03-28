@@ -1,6 +1,5 @@
 # DeckLink
-
-Projet en groupe lors de ma formation DWWM, d'un réseau social pour collectionneurs de cartes.
+Group project for a social network dedicated to card collectors
 
 # 🏢 Architecture
 ```
@@ -20,34 +19,45 @@ Projet en groupe lors de ma formation DWWM, d'un réseau social pour collectionn
 │ ├── 📜 README.md
 ```
 
-# 📌 Fonctionnalités Principales  
+📌 Main Features
+🔹 User Management
+Secure sign-up and login with authentication (email + password or via OAuth).
 
-## 🔹 Gestion des utilisateurs  
-- Inscription et connexion sécurisées avec authentification (email + mot de passe ou via OAuth).  
-- Profil utilisateur avec avatar, historique des duels et statistiques.  
-- Système de rôles : utilisateur, modérateur et administrateur.  
+User profile with avatar, duel history, and statistics.
 
-## 🔄 Échanges de cartes  
-- 🔁 **Propositions d’échange** avec validation des deux parties.  
-- 📊 **Système d’équilibrage** : Comparaison automatique de la valeur des cartes.  
-- 🛡️ **Mode sécurisé avec modérateur garant** pour éviter les arnaques.  
+Role system: user, moderator, and administrator.
 
-## 💬 Discussion & Communauté  
-- 📌 **Forum structuré** : Catégories dédiées (stratégies, événements, duels, etc.).  
-- 🚫 **Système anti-spam** avec filtrage des messages inappropriés.  
-- 👍 **Système de réactions et votes** pour mettre en avant les meilleures discussions.  
+🔄 Card Trading
+🔁 Trade proposals with validation from both parties.
 
-## ⚔ Combats & Tournois  
-- 🆚 **Mode duel** : Combats entre joueurs avec respect des règles officielles.  
-- 🎲 **Mise en jeu de cartes (optionnel)** pour des matchs à enjeu.  
-- 🏆 **Classement des joueurs** avec récompenses pour les meilleurs duellistes.  
-- ⚖️ **Arbitrage par modérateur** en cas de litige.  
+📊 Balancing system: Automatic comparison of card values.
 
-## 🎉 Événements & Tournois  
-- 📅 **Gestion des événements** : Inscription, notifications et suivi des participants.  
-- 🏅 **Tournois organisés** avec récompenses (cartes, monnaie virtuelle, bonus).  
-- 🔥 **Événements spéciaux** : Échanges groupés, conférences sur les stratégies, challenges exclusifs.  
+🛡️ Secure mode with a moderator guarantee to prevent scams.
 
-## 🛠️ Outils et Sécurité  
-- 🔍 **Recherche avancée** : Filtres pour trouver des cartes spécifiques.  
-- 🛡️ **Système de modération** : Signalement des abus, sanctions automatiques et gestion des litiges.
+💬 Discussion & Community
+📌 Structured forum: Dedicated categories (strategies, events, duels, etc.).
+
+🚫 Anti-spam system with inappropriate message filtering.
+
+👍 Reactions and voting system to highlight the best discussions.
+
+⚔ Battles & Tournaments
+🆚 Duel mode: Player battles following official rules.
+
+🎲 Card wagering (optional) for high-stakes matches.
+
+🏆 Player rankings with rewards for top duelists.
+
+⚖️ Moderator arbitration in case of disputes.
+
+🎉 Events & Tournaments
+📅 Event management: Registration, notifications, and participant tracking.
+
+🏅 Organized tournaments with rewards (cards, virtual currency, bonuses).
+
+🔥 Special events: Group trades, strategy conferences, exclusive challenges.
+
+🛠️ Tools & Security
+🔍 Advanced search: Filters to find specific cards.
+
+🛡️ Moderation system: Abuse reporting, automatic sanctions, and dispute management.
