@@ -29,11 +29,15 @@
     "eslint-plugin-promise": "^6.6.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
-    "prettier": "3.5.3"
+    "prettier": "3.5.3",
+    "prisma": "^6.5.0"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "dependencies": {
+    "@prisma/client": "^6.5.0"
   }
 }

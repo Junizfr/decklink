@@ -1,0 +1,124 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               Int        @id @default(autoincrement())
+  fullname         String
+  email            String     @unique
+  username         String     @unique
+  password         String
+  avatar           String?
+  role             Role       @relation(fields: [roleId], references: [id])
+  roleId           Int
+  xp               Int
+  createdAt        DateTime   @default(now())
+  updateAt         DateTime?
+  //relation :
+  sentMessages     Chat[]     @relation("SentMessages")
+  receivedMessages Chat[]     @relation("ReceivedMessages")
+  playerOne        Fight[]    @relation("PlayerOne")
+  playerTwo        Fight[]    @relation("PlayerTwo")
+  winner           Fight[]    @relation("Winner")
+  organizer        Event[]    @relation("Organizer")
+  owner            Card[]     @relation("Owner")
+  initiator        Exchange[] @relation("Initiator")
+  target           Exchange[] @relation("Target")
+  author Article[] @relation("Author")
+  authorComment Comment[] @relation("AuthorComment")
+}
+
+model Role {
+  id    Int    @id @default(autoincrement())
+  name  String
+  users User[]
+}
+
+model Chat {
+  id         Int      @id @default(autoincrement())
+  sender     User     @relation("SentMessages", fields: [senderId], references: [id])
+  senderId   Int
+  receiver   User     @relation("ReceivedMessages", fields: [receiverId], references: [id])
+  receiverId Int
+  message    String
+  sendAt     DateTime @default(now())
+  @@index([senderId])
+  @@index([receiverId])
+  @@index([senderId, receiverId])
+}
+
+model Fight {
+  id        Int      @id @default(autoincrement())
+  playerOne User     @relation("PlayerOne", fields: [player1], references: [id])
+  player1   Int
+  playerTwo User     @relation("PlayerTwo", fields: [player2], references: [id])
+  player2   Int
+  winner    User     @relation("Winner", fields: [winnerId], references: [id])
+  winnerId  Int
+  fightAt   DateTime @default(now())
+}
+
+model Event {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  eventAt     DateTime
+  organizer   User     @relation("Organizer", fields: [organizerId], references: [id])
+  organizerId Int
+}
+
+model Card {
+  id            Int        @id @default(autoincrement())
+  name          String
+  rarety        Int
+  edition       String
+  state         Int
+  owner         User       @relation("Owner", fields: [ownerId], references: [id])
+  ownerId       Int
+  cardExchanged Exchange[] @relation("Card")
+  @@index([name])
+}
+
+model Exchange {
+  id          Int      @id @default(autoincrement())
+  initiator   User     @relation("Initiator", fields: [initiatorId], references: [id])
+  initiatorId Int
+  target      User     @relation("Target", fields: [targetId], references: [id])
+  targetId    Int
+  card        Card     @relation("Card", fields: [cardId], references: [id])
+  cardId      Int
+  status      Int
+  exchangeAt  DateTime
+}
+
+model Article {
+  id Int @id @default(autoincrement())
+  title String
+  content String
+  author User @relation("Author", fields: [authorId], references: [id])
+  authorId Int
+  public Boolean
+  state Int
+  post Comment[] @relation("Post")
+}
+
+model Comment {
+  id Int @id @default(autoincrement())
+  authorComment User @relation("AuthorComment", fields: [authorCommentId], references: [id])
+  authorCommentId Int
+  content String
+  post Article @relation("Post", fields: [postId], references: [id])
+  postId Int
+}
