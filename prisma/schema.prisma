@@ -36,8 +36,8 @@ model User {
   owner            Card[]     @relation("Owner")
   initiator        Exchange[] @relation("Initiator")
   target           Exchange[] @relation("Target")
-  author Article[] @relation("Author")
-  authorComment Comment[] @relation("AuthorComment")
+  author           Article[]  @relation("Author")
+  authorComment    Comment[]  @relation("AuthorComment")
 }
 
 model Role {
@@ -54,6 +54,7 @@ model Chat {
   receiverId Int
   message    String
   sendAt     DateTime @default(now())
+
   @@index([senderId])
   @@index([receiverId])
   @@index([senderId, receiverId])
@@ -88,6 +89,7 @@ model Card {
   owner         User       @relation("Owner", fields: [ownerId], references: [id])
   ownerId       Int
   cardExchanged Exchange[] @relation("Card")
+
   @@index([name])
 }
 
@@ -104,21 +106,21 @@ model Exchange {
 }
 
 model Article {
-  id Int @id @default(autoincrement())
-  title String
-  content String
-  author User @relation("Author", fields: [authorId], references: [id])
+  id       Int       @id @default(autoincrement())
+  title    String
+  content  String
+  author   User      @relation("Author", fields: [authorId], references: [id])
   authorId Int
-  public Boolean
-  state Int
-  post Comment[] @relation("Post")
+  public   Boolean
+  state    Int
+  post     Comment[] @relation("Post")
 }
 
 model Comment {
-  id Int @id @default(autoincrement())
-  authorComment User @relation("AuthorComment", fields: [authorCommentId], references: [id])
+  id              Int     @id @default(autoincrement())
+  authorComment   User    @relation("AuthorComment", fields: [authorCommentId], references: [id])
   authorCommentId Int
-  content String
-  post Article @relation("Post", fields: [postId], references: [id])
-  postId Int
+  content         String
+  post            Article @relation("Post", fields: [postId], references: [id])
+  postId          Int
 }
