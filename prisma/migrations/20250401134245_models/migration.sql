@@ -7,6 +7,7 @@ CREATE TABLE "User" (
     "password" TEXT NOT NULL,
     "avatar" TEXT,
     "roleId" INTEGER NOT NULL,
+    "rank" TEXT,
     "xp" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updateAt" TIMESTAMP(3),
@@ -38,7 +39,7 @@ CREATE TABLE "Fight" (
     "id" SERIAL NOT NULL,
     "player1" INTEGER NOT NULL,
     "player2" INTEGER NOT NULL,
-    "winnerId" INTEGER NOT NULL,
+    "winnerId" INTEGER,
     "fightAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Fight_pkey" PRIMARY KEY ("id")
@@ -107,6 +108,18 @@ CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
 -- CreateIndex
 CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 
+-- CreateIndex
+CREATE INDEX "Chat_senderId_idx" ON "Chat"("senderId");
+
+-- CreateIndex
+CREATE INDEX "Chat_receiverId_idx" ON "Chat"("receiverId");
+
+-- CreateIndex
+CREATE INDEX "Chat_senderId_receiverId_idx" ON "Chat"("senderId", "receiverId");
+
+-- CreateIndex
+CREATE INDEX "Card_name_idx" ON "Card"("name");
+
 -- AddForeignKey
 ALTER TABLE "User" ADD CONSTRAINT "User_roleId_fkey" FOREIGN KEY ("roleId") REFERENCES "Role"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
@@ -123,7 +136,7 @@ ALTER TABLE "Fight" ADD CONSTRAINT "Fight_player1_fkey" FOREIGN KEY ("player1") 
 ALTER TABLE "Fight" ADD CONSTRAINT "Fight_player2_fkey" FOREIGN KEY ("player2") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Fight" ADD CONSTRAINT "Fight_winnerId_fkey" FOREIGN KEY ("winnerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Fight" ADD CONSTRAINT "Fight_winnerId_fkey" FOREIGN KEY ("winnerId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Event" ADD CONSTRAINT "Event_organizerId_fkey" FOREIGN KEY ("organizerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

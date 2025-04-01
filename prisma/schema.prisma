@@ -23,6 +23,7 @@ model User {
   avatar           String?
   role             Role       @relation(fields: [roleId], references: [id])
   roleId           Int
+  rank             String?
   xp               Int
   createdAt        DateTime   @default(now())
   updateAt         DateTime?
@@ -33,7 +34,7 @@ model User {
   playerTwo        Fight[]    @relation("PlayerTwo")
   winner           Fight[]    @relation("Winner")
   organizer        Event[]    @relation("Organizer")
-  owner            Card[]     @relation("Owner")
+  ownerId          Card[]     @relation("Owner")
   initiator        Exchange[] @relation("Initiator")
   target           Exchange[] @relation("Target")
   author           Article[]  @relation("Author")
@@ -66,8 +67,8 @@ model Fight {
   player1   Int
   playerTwo User     @relation("PlayerTwo", fields: [player2], references: [id])
   player2   Int
-  winner    User     @relation("Winner", fields: [winnerId], references: [id])
-  winnerId  Int
+  winner    User?    @relation("Winner", fields: [winnerId], references: [id])
+  winnerId  Int?
   fightAt   DateTime @default(now())
 }
 
