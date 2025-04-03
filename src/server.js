@@ -24,11 +24,6 @@ const initSchema = () => {
 const PORT = process.env.PORT || 3000;
 const HOST = process.env.HOST || "localhost";
 
-app.listen(PORT, () => {
-  initSchema();
-  console.log(`Server is running at http://${HOST}:${PORT}`);
-});
-
 app.use(express.json());
 app.use(session({ 
     secret: process.env.TOKEN, 
@@ -36,6 +31,11 @@ app.use(session({
 }));
 
 app.use('/', router);
+
+app.listen(PORT, () => {
+  initSchema();
+  console.log(`Server is running at http://${HOST}:${PORT}`);
+});
 
 export default mongo;
 
