@@ -9,10 +9,10 @@ const router = Router();
 router.post("/register", securityController.register);
 router.post("/login", securityController.login);
 
+/** Cards */
 router.post("/cards", cardController.addCard);
 router.get("/cards", cardController.getAllCards);
 router.patch("/cards/:id", cardController.updateCard);
 router.delete("/cards/:id", cardController.deleteCard);
-
 
 export default router;
