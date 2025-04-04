@@ -3,6 +3,8 @@ import { Router } from "express";
 import securityController from "./controllers/securityController.js";
 import fightController from "./controllers/fightController.js";
 import cardController from "./controllers/cardController.js";
+import postController from "./controllers/postController.js";
+import authMiddleware from "./middlewares/authMiddleware.js";
 
 const router = Router();
 
